@@ -195,7 +195,7 @@
         </div>
     </section>
 
-    <section id="coolautumn" class="coolautumn">
+   <!-- <section id="coolautumn" class="coolautumn">
         <div class="tinyforest_overlay coolautumn_overlay">
             <div class="container bangbang">
                 <div class="row">
@@ -214,9 +214,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
-    <section id="drivinghome" class="drivinghome">
+   <!-- <section id="drivinghome" class="drivinghome">
         <div class="tinyforest_overlay drivinghome_overlay">
             <div class="container chikobiko">
                 <div class="row">
@@ -235,9 +235,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>----->
 
-    <section id="pricing" class="pricing">
+   <!-- <section id="pricing" class="pricing">
         <div class="about_overlay pricing_overlay">
             <div class="container bangbang">
                 <div class="row">
@@ -331,13 +331,13 @@
                 </div>
             </div>
         </div>
-    </section><!-- End of Pricing Section -->
+    </section><!-- End of Pricing Section -->-->
 
 
 
 
 
-    <section id="testimonial" class="testimonial">
+   <!-- <section id="testimonial" class="testimonial">
         <div class="features_overlay">
             <div class="container chikobiko">
                 <div class="row">

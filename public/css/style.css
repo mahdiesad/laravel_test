@@ -615,15 +615,15 @@ input:-ms-input-placeholder {
 }
 
 .main_home_content h2{
-	font-size:60px;
-	color:#70c92f;
-	text-transform:uppercase;
-	font-family: 'open_sanslight';
-	line-height:4rem;
+    font-size: 60px;
+    color: #b33ec7;
+    text-transform: uppercase;
+    font-family: 'open_sanslight';
+    line-height: 4rem;
 }
 .main_home_content p{
     font-size: 24px;
-    color: #fff;
+    color: #a844b9;
     max-width: 45%;
     margin: 0 auto;
     line-height: 2.5rem;
