@@ -45,6 +45,9 @@
 <nav id="main-nav">
     <ul>
         <li><a href="#home"><span>Home</span></a></li>
+        <li><a href="/mahdieh/users"><span>User</span></a></li>
+        <li><a href="/mahdieh/insert"><span>Insert</span></a></li>
+        <li><a href="/mahdieh/login"><span>Login</span></a></li>
         <li><a href="#about"><span>About Me</span></a></li>
         <li><a href="#features"><span>Features</span></a></li>
         <li><a href="#experience"><span>Experience</span></a></li>
