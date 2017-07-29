@@ -163,10 +163,12 @@
 </div>
 <br>
 <div class="login">
+    {{ csrf_field() }}
+
     <input type="text" placeholder="username" name="user"><br>
     <input type="password" placeholder="password" name="password"><br>
-    <input type="button" value="Login">
-    <a  href="/mahdieh/signUp"><input type="button" value="Sign up"></a>
+    <input type="submit" value="Login">
+    <a  href="/signup">SignUp</a>
 </div>
 
 <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>

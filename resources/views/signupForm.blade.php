@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <script src="/js/signup.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
 
     <meta charset="UTF-8">
 
@@ -144,6 +146,35 @@
         ::-webkit-input-placeholder{
             color: rgba(255,255,255,0.6);
         }
+        input[type="submit"]{
+            background:#0098cb;
+            border:0px;
+            border-radius:5px;
+            color:#fff;
+            padding:10px;
+            margin:20px auto;
+        }
+        /*input[type="file"]{*/
+            /*background:#0098cb;*/
+            /*border:0px;*/
+            /*border-radius:5px;*/
+            /*color:#fff;*/
+            /*padding:10px;*/
+            /*margin:20px auto;*/
+        /*}*/
+        .login input[type=file]{
+            width: 250px;
+            height: 30px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 2px;
+            color: #fff;
+            font-family: 'Exo', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 4px;
+        }
+
 
         /*::-moz-input-placeholder{*/
             /*color: rgba(255,255,255,0.6);*/
@@ -161,19 +192,30 @@
 <div class="header">
     <div>sign<span>Up</span></div>
 </div>
+{{--<div id="frmCheckUsername">
+  <label>Check Username:</label>
+  <input name="username" type="text" id="username" class="demoInputBox" onBlur="checkAvailability()"><span id="user-availability-status"></span>
+</div>
+<p><img src="LoaderIcon.gif" id="loaderIcon" style="display:none" /></p>--}}
 <br>
-<div class="login">
-    <form action="" method="POST">
+<div class="login" id="frmCheckUsername">
+    <form action="" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
 
-    <input type="text" placeholder="username" name="username"><br>
+        <input type="text" placeholder="username" id="username" name="username" class="demoInputBox" onBlur="checkAvailability()"><span id="user-availability-status"></span>
+            <p><img src="images/LoaderIcon.gif" id="loaderIcon" style="display:none" /></p>
+            <br>
     <input type="password" placeholder="password" name="password"><br>
     <input type="text" placeholder="firstname" name="firstname"><br>
     <input type="text" placeholder="lastName" name="lastname"><br>
     <input type="text" placeholder="age" name="age"><br>
+        <input type="file" name="photo" id="fileToUpload"><br>
+        {{--<input type="submit" value="Upload" name="upload"><br>--}}
     <input type="submit" value="signUp">
+
     </form>
 </div>
+
 
 <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
 

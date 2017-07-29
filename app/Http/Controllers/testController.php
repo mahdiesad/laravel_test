@@ -9,24 +9,45 @@
 namespace App\Http\Controllers;
 
 
-use App\Person;
+use App\Roles;
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 
 
 class testController extends Controller
 {
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(){
+       // $this->middleware('guest')->except('logout');
+
+        $this->middleware('auth');
+    }
+
     public function test(){
 
         return view('mahdieh');
 
     }
-
     public function insert_page(Request $request)
     {
         $array = array();
@@ -42,14 +63,13 @@ class testController extends Controller
         }
        return view('insert');
     }
-
     public function index()
     {
 //        $users = DB::select('select * from users where active = ?', [1]);
 //        var_dump($users);
 //       // return view('user.index', ['users' => $users]);
 
-        print_r(Person::all());die;
+        print_r(Roles::all());die;
     }
     public function person_view(){
 //        $person = DB::table('person')->get();
@@ -73,7 +93,7 @@ class testController extends Controller
     }
     private function person_view_tabale(){
 
-       return Person::all();
+       return User::all();
 //        return view('users');
      //  var_dump($person);
 
@@ -83,7 +103,7 @@ class testController extends Controller
 //        var_dump($data[4]);
 //        die;
 
-        Person::create(
+        Roles::create(
             [
                 'UserName' => $data[0],
                 'LastName' => $data[1],
@@ -98,7 +118,7 @@ class testController extends Controller
     public function login_url($name){
 //        $users = User::where('id', '!=', Auth::id())->get();
 
-        $result=Person::where('UserName',$name)->get();
+        $result=Roles::where('UserName',$name)->get();
 
         $users = array();
         foreach ($result as $user) {
@@ -132,11 +152,9 @@ class testController extends Controller
        return view('login_url')->with('user',$users);
 
     }
-
-
     public function edit_profile($name,Request $request){
 
-        $result=Person::where('UserName',$name)->get();
+        $result=Roles::where('UserName',$name)->get();
 
         $users = array();
         foreach ($result as $user) {
@@ -152,7 +170,7 @@ class testController extends Controller
         $array[]=$request->input('age');
 
         if($request->isMethod('post')){
-            person::where('UserName',$name) -> update(['LastName'=>$array[0],'FirstName'=>$array[1],'Age'=>$array[2]]);
+            Roles::where('UserName',$name) -> update(['LastName'=>$array[0],'FirstName'=>$array[1],'Age'=>$array[2]]);
            return  $this->person_view();
 
         }
@@ -164,8 +182,8 @@ class testController extends Controller
     }
     public function delete_user($name)
     {
-        $result=Person::where('UserName',$name)->get();
-        person::where('UserName',$name) -> delete();
+        $result=Roles::where('UserName',$name)->get();
+        Roles::where('UserName',$name) -> delete();
         return  $this->person_view();
     }
     public function loginForm()
@@ -196,5 +214,32 @@ class testController extends Controller
         else
             return view('signUpForm');
     }
+    public function login_succ(){
+        if(check::auth){
+            return $this->person_view();
+        }
+        else
+            return view('home');
+    }
 
+    /**
+     * @param Request $req
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+//    public function login(Request $req){
+//
+//        $credentials = array('UserName' => $req['user'],
+//            'password' => $req['password']);
+//        if (Auth::attempt($credentials , false)) {
+//
+//           $this->login_succ();
+//        }
+//        else{
+//            //return redirect('login');
+//            $message = 'username or password is incorrect';
+//
+//        }
+//
+//        return view('home');
+//    }
 }

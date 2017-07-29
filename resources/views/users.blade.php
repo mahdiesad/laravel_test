@@ -68,6 +68,7 @@
     <table align="center" cellpadding="10" cellspacing="10" >
         <tr>
             {{--<td>id</td>--}}
+            <td>Picture</td>
             <td>UserName</td>
             <td>LastName</td>
             <td>FirstName</td>
@@ -79,6 +80,7 @@
 
         @foreach($users as $user)
             <tr>
+                <td><img src="/images/users/{{$user['id']}}/30x30/{{$user['img_name']}}"></td>
                 <td>{{$user['username']}}</td>
                 <td>{{$user['lastname']}}</td>
                 <td>{{$user['firstname']}}</td>
@@ -89,7 +91,9 @@
             </tr>
         @endforeach
 
-    </table>
 
+    </table>
+   <a href="/logout">Logout</a>
+   <a href="/myprofile">my profile</a>
     </body>
 </html>

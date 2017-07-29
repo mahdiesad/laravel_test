@@ -13,9 +13,13 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array
+     *
      */
+    protected $guarded = ['id'];
+    protected $table = 'person';
+    //protected $name='person';
     protected $fillable = [
-       'ID' ,'UserName', 'LastName', 'FirstName','Age'
+        'ID' ,'UserName', 'LastName', 'FirstName','Age', 'password','role_id'
 
     ];
 
@@ -25,6 +29,37 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
+
+    public function getAuthPassword () {
+
+        return $this->password;
+
+    }
+    public function role()
+    {
+        return $this->hasOne('Roles','role_id');
+    }
+
+    public function img()
+    {
+        return $this->belongsTo('Images','id');
+    }
+    public function post()
+    {
+        return $this->belongsTo('Posts','id');
+    }
+    public function friend()
+    {
+        return $this->belongsTo('Friends','id');
+    }
+    public function friend_req()
+    {
+        return $this->belongsTo('Friends_req','id');
+    }
+//    public function isAdmin()
+//    {
+//        return $this->admin; // this looks for an admin column in your users table
+//    }
 }

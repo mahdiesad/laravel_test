@@ -12,10 +12,11 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
+   /// 'table' => 'person',
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
+       /// 'table' => 'person',
     ],
 
     /*
@@ -70,10 +71,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'person' => [
+             'driver' => 'database',
+             'table' => 'person',
+         ],
     ],
 
     /*
