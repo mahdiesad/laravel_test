@@ -66,8 +66,8 @@
                                 <td>{{$person['UserName']}}</td>
                                 <td>{{$person['LastName']}}</td>
                                 <td>{{$person['FirstName']}}</td>
-                                <td>  <button  type="button" class="w3-button w3-theme-d1 w3-margin-bottom accept"><i class="fa fa-thumbs-up"></i>  Accept</button></td>
-                                <td>  <button  type="button" class="w3-button w3-theme-d1 w3-margin-bottom decline"><i class="fa fa-thumbs-up"></i>  Decline</button></td>
+                                <td>  <button id="accept" type="button" class="w3-button w3-theme-d1 w3-margin-bottom accept"><i class="fa fa-thumbs-up"></i>  Accept</button></td>
+                                <td>  <button  id="decline" type="button" class="w3-button w3-theme-d1 w3-margin-bottom decline"><i class="fa fa-thumbs-up"></i>  Decline</button></td>
                             </tr>
                         @endforeach
                     </table>
@@ -95,7 +95,7 @@
                               <td>{{$person['UserName']}}</td>
                               <td>{{$person['LastName']}}</td>
                               <td>{{$person['FirstName']}}</td>
-                              <td> <button  type="button" class="w3-button w3-theme-d1 w3-margin-bottom remove"><i class="fa fa-thumbs-up"></i>  remove</button></td>
+                              <td> <button id="remove"  type="button" class="w3-button w3-theme-d1 w3-margin-bottom remove"><i class="fa fa-thumbs-up"></i>  remove</button></td>
                           </tr>
                               @endforeach
 
@@ -109,6 +109,18 @@
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
     <h5>Footer</h5>
+    <spam>
+        <marquee behavior="scroll" bgcolor="gray" loop="-1" width="30%">
+            <i>
+                <font color="#435761">
+                    Today's date is :
+                    <strong>
+                        <span id="time"></span>
+                    </strong>
+                </font>
+            </i>
+        </marquee>
+    </spam>
 </footer>
 
 <footer class="w3-container w3-theme-d5">
@@ -139,13 +151,16 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
-    $('.accept').on("click",function () {
+    $('#accept').on("click",function () {
         console.log("accept");
+
         var data ={
             botton_id: 'accept',
-           user_id: $('#user_id'),
+           user_id: $('#user_id').html,
             _token:$("input[name=_token]").val()
         };
+        console.log(data);
+
         $.ajax({
             type: 'POST',
             url: '/friends_req',
@@ -157,26 +172,28 @@
     });
 
 
-    $('.decline').on("click",function () {
+    $('#decline').on("click",function () {
         console.log("decline");
         var data ={
             botton_id: 'decline',
-            user_id: $('#user_id'),
+            user_id: $('#user_id').html(),
             _token:$("input[name=_token]").val()
         };
+        console.log(data);
         $.ajax({
             type: 'POST',
             url: '/friends_req',
             data: data,
             success: function(data){
                 alert('successful');
+                $('#decline').remove();
             }
         });
     });
-    $('.remove').on("click",function () {
+    $('#remove').on("click",function () {
         console.log("remove");
         var data ={
-            user_id: $('#user_id'),
+            user_id: $('#user_id').html(),
             _token:$("input[name=_token]").val()
         };
         $.ajax({
@@ -188,7 +205,26 @@
             }
         });
     });
-</script>
 
+    var today = new Date();
+    document.getElementById('time').innerHTML=today;
+</script>
+{{--$('#post_botton').on("click",function () {
+       /// console.log("accept");
+        var data ={
+           posts: $('#post_text').html(),
+            _token:$("input[name=_token]").val()
+
+        };
+        console.log(data);
+        $.ajax({
+            type: 'post',
+            url: '/sendpost',
+            data: data,
+            success: function(data){
+                alert('successful');
+            }
+        });
+    });--}}
 </body>
 </html>

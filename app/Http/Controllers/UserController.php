@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
     use AuthorizesRequests,  ValidatesRequests;
+    protected $redirectTo = '/friends';
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -61,8 +65,9 @@ class UserController extends Controller
         return view('friends')->with('friends',$friends )->with('friends_req',$friends_req);
     }
     public function friends_req(Request $req){
+//        die('here');
         $current=Auth::user();
-        var_dump('<pre>',$req);die;
+//        var_dump('<pre>',$req);die;
         if($req['botton_id'] != 'decline'){
             Friends_req::where('userId_2', $current->id)
                        ->where('userId_1',$req['user_id'])
@@ -88,6 +93,7 @@ class UserController extends Controller
                 ->delete();
 
         return redirect()->to('/friends');
+//        return view('/friends');
     }
     public function send_post(Request $req){
 

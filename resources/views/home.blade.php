@@ -282,6 +282,18 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
     <h5>Footer</h5>
+    <spam>
+    <marquee behavior="scroll" bgcolor="gray" loop="-1" width="30%">
+        <i>
+            <font color="#435761">
+                Today's date is :
+                <strong>
+                    <span id="time"></span>
+                </strong>
+            </font>
+        </i>
+    </marquee>
+    </spam>
 </footer>
 
 <footer class="w3-container w3-theme-d5">
@@ -330,6 +342,8 @@ Licence URI: http://www.os-templates.com/template-terms
             }
         });
     });
+    var today = new Date();
+    document.getElementById('time').innerHTML=today;
 </script>
 
 </body>

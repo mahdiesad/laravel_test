@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable , HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -58,8 +59,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo('Friends_req','id');
     }
-//    public function isAdmin()
-//    {
-//        return $this->admin; // this looks for an admin column in your users table
-//    }
+    public function user_api()
+    {
+        return $this->belongsTo('Usre_api','id');
+    }
+    public function isAdmin()
+    {
+        return $this->role_id; // this looks for an admin column in your users table
+    }
 }

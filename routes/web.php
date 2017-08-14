@@ -14,7 +14,7 @@
 ///////   Admin Route
 use App\User;
 
-    Route::group(['prefix' => ''], function () {
+    Route::group(['prefix' => '' , 'middleware' => ['auth', 'admin']], function () {
         Route::match(['post','get'],'/mahdieh/users','AdminController@viewUser' );
         Route::get('/delete/{name?}','AdminController@delete_user');
         Route::match(['get','post'],'/edit/{name?}','AdminController@edit_profile');
@@ -27,7 +27,7 @@ use App\User;
 
         });
         });
-//////  User routw
+//////  User route
     Route::group(['prefix' => ''], function () {
         Route::match(['post','get'],'/home','UserController@homePage' );
         Route::match(['post','get'],'/friends','UserController@friendPage' );
@@ -59,8 +59,14 @@ use App\User;
     ///////////////////////////Route::get('login', ['as' => 'login', 'uses' => 'LoginController@getView']);
 //Auth::routes();
 //Route::get('login','Auth\LoginController@login');
-//Route::get('/', function () {
-//    return view('welcome');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+//Auth::routes();
+//Route::group(['prefix' => 'api/v1.0/'], function () {
+//
+//    Route::match(['get', 'post'], 'login', 'MLoginController@login');
 //});
 //
 //
